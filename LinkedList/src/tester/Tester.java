@@ -19,10 +19,25 @@ public class Tester {
 		linkedList.insertAtLast(new Node(2));
 		linkedList.insertAtPosition(8, new Node(5));
 		
+		
 		linkedList.display();
 		
 		System.out.println(linkedList.getLength());
 		
+		
+		System.out.println("node with data "+linkedList.removeNodeFromFront().getData()+" is removed");
+		
+		
+		linkedList.display();
+		
+		System.out.println(linkedList.getLength());
+		
+		
+		System.out.println("node with data "+linkedList.removeFromLast().getData()+" is removed");
+		
+		linkedList.display();
+		
+		System.out.println(linkedList.getLength());
 	}
 
 }

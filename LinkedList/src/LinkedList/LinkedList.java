@@ -73,6 +73,48 @@ public class LinkedList {
 		
 	}
 	
+	public Node removeNodeFromFront() {
+		Node node=head;
+		if(node!=null) {
+			head=node.getNext();
+			node.setNext(null);
+			length--;
+		}
+		return node;	
+	}
+	
+	public Node removeFromLast() {
+		Node node=head;
+		Node node1=head;
+		if(node!=null) {
+			while(node.getNext().getNext()!=null) {
+				node=node.getNext();
+				node1=node.getNext();
+			}
+			node.setNext(null);
+			length--;
+			
+		}
+		return node1;
+	}
+	
+	
+	
+	public Node removeFromPosition(int position) {
+		Node node=head;
+		Node node1=head;
+		
+		if(position<=1) {
+			return removeNodeFromFront();
+		}
+		else if(position>=length) {
+			return removeFromLast();
+		}
+		else {
+			
+		}
+	}
+	
 	
 	public void display() {
 		if(head==null) {
