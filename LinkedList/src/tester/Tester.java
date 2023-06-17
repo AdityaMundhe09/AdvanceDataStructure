@@ -38,6 +38,17 @@ public class Tester {
 		linkedList.display();
 		
 		System.out.println(linkedList.getLength());
+		
+		
+		System.out.println("node with data "+linkedList.removeFromPosition(5).getData()+" is removed");
+		
+		linkedList.display();
+		
+		System.out.println(linkedList.getLength());
+		
+		linkedList.reverseLinkedList();
+		
+		linkedList.display();
 	}
 
 }

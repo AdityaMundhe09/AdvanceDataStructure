@@ -111,8 +111,30 @@ public class LinkedList {
 			return removeFromLast();
 		}
 		else {
-			
+			for(int i=1;i<position-1;i++) {
+				node=node.getNext();
+				node1=node.getNext();
+			}
+			node.setNext(node1.getNext());
+			node1.setNext(null);
+			length--;
+			return node1;
 		}
+	}
+	
+	public void reverseLinkedList() {
+		Node prev=null;
+		Node curr=head;
+		Node next=head;
+		
+		while(next!=null) {
+			next=curr.getNext();
+			curr.setNext(prev);
+			prev=curr;
+			curr=next;
+		}
+		
+		head=prev;
 	}
 	
 	
