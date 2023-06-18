@@ -1,5 +1,8 @@
 package com.app.service;
 
+import static com.app.dto.PatientRequest.createPatient;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +43,20 @@ public class PatientServiceImpl implements PatientService {
 		Patient p1 = repo.save(p);
 		
 		return "Patient "+p1.getUser().getFirstName() +" is added successfully";
+	}
+
+
+	@Override
+	public List<PatientRequest> getAllPatients() {
+		// TODO Auto-generated method stub
+		List<Patient> p = repo.findAll();
+		return createPatient(p);
+	}
+	
+	@Override
+	public String removePatient(Integer pid) {
+		repo.deleteById(pid);
+		return "Patient deleted";
 	}
 
 	

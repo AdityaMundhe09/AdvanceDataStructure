@@ -1,5 +1,9 @@
 package com.app.service;
 
+import static com.app.dto.EmployeeRequest.createEmployee;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +42,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee e1 = repo.save(e);
 		
 		return "Employee "+e1.getUser().getFirstName() +" is added successfully";
+	}
+
+	@Override
+	public String removeEmployee(Integer empId) {
+		// TODO Auto-generated method stub
+		repo.deleteById(empId);
+		
+		return "User  deleted";
+	}
+
+	@Override
+	public List<EmployeeRequest> displayEmployees() {
+		// TODO Auto-generated method stub
+		
+		List<Employee> eList = repo.findAll();
+		
+		
+		return createEmployee(eList);
 	}
 
 }

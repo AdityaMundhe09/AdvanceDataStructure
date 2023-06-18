@@ -3,6 +3,9 @@ package com.app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +27,15 @@ public class EmployeeController {
 	@PostMapping
 	public ResponseEntity<?> addEmployee(@RequestBody EmployeeRequest emp) {
 		return new ResponseEntity<>(new ApiResponse(service.addNewEmployee(emp)), HttpStatus.CREATED);
+	}
+	
+	@DeleteMapping("/{empId}")
+	public ResponseEntity<?> removeEmployee(@PathVariable Integer empId){
+		return new ResponseEntity<>(new ApiResponse(service.removeEmployee(empId)), HttpStatus.OK);
+	}
+	
+	@GetMapping
+	public ResponseEntity<?> displayAllEmployees(){
+		return new ResponseEntity<>(service.displayEmployees(),HttpStatus.OK);
 	}
 }
