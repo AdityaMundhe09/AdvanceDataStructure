@@ -11,4 +11,8 @@ public interface EmployeeService {
 	String removeEmployee(Integer empId);
 	
 	List<EmployeeRequest> displayEmployees();
+
+	String updateEmployee(EmployeeRequest emp);
+	
+	String addEmployeeDoctor(EmployeeRequest emp);
 }

@@ -20,6 +20,7 @@ import lombok.Setter;
 
 public class EmployeeRequest {
 	
+	
 	private Integer empId;
 	private String firstName;
 	private String lastName;
@@ -33,6 +34,7 @@ public class EmployeeRequest {
 	private double contactNo;
 	private LocalDate hiringDate;
 	private double salary;
+	private double charges;
 	public EmployeeRequest(Integer empId, String firstName, String lastName, String email, Role role, LocalDate dob,
 			double contactNo, LocalDate hiringDate, double salary) {
 		super();

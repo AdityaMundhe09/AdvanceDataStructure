@@ -36,6 +36,7 @@ public class PatientRequest {
 	private BloodGroup bloodGroup;
 	private String disease;
 	private PaymentStatus paymentStatus;
+	private String doctorName;
 	
 	public static List<PatientRequest> createPatient(List<Patient> pt){
 		List<PatientRequest> list = new ArrayList<>();
@@ -54,6 +55,7 @@ public class PatientRequest {
 			pr.setBloodGroup(p.getBloodGroup());
 			pr.setDisease(p.getDisease());
 			pr.setPaymentStatus(p.getPaymentStatus());
+			
 			
 			list.add(pr);
 		}

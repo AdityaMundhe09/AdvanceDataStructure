@@ -11,4 +11,6 @@ public interface PatientService {
 	List<PatientRequest> getAllPatients();
 
 	String removePatient(Integer pid);
+
+	String updatePatient(PatientRequest pt);
 }

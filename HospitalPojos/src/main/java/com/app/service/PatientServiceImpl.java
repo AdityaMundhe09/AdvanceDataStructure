@@ -9,9 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.app.dto.PatientRequest;
-
+import com.app.entities.Doctor;
 import com.app.entities.Patient;
 import com.app.entities.User;
+import com.app.repository.DoctorRepository;
 import com.app.repository.PatientRepository;
 import com.app.repository.UserRepository;
 
@@ -30,6 +31,9 @@ public class PatientServiceImpl implements PatientService {
 	@Autowired
 	private ModelMapper mapper;
 	
+	@Autowired
+	private DoctorRepository doctorRepo;
+	
 	
 	@Override
 	public String addPatient(PatientRequest pet) {
@@ -40,9 +44,13 @@ public class PatientServiceImpl implements PatientService {
 		
 		p.setUser(u);
 		
-		Patient p1 = repo.save(p);
 		
-		return "Patient "+p1.getUser().getFirstName() +" is added successfully";
+		Doctor d = doctorRepo.findByEmployeeUserFirstName(pet.getDoctorName()).orElseThrow();
+		
+		
+		d.addPatient(p);
+		
+		return "Patient "+p.getUser().getFirstName() +" is added successfully";
 	}
 
 
@@ -57,6 +65,30 @@ public class PatientServiceImpl implements PatientService {
 	public String removePatient(Integer pid) {
 		repo.deleteById(pid);
 		return "Patient deleted";
+	}
+
+
+	@Override
+	public String updatePatient(PatientRequest pt) {
+		// TODO Auto-generated method stub
+		
+		Patient p = repo.findById(pt.getPatientId()).orElseThrow();
+		
+		p.getUser().setFirstName(pt.getFirstName());
+		p.getUser().setLastName(pt.getLastName());
+		p.getUser().setEmail(pt.getEmail());
+		p.getUser().setPassword(pt.getPassword());
+		p.getUser().setConfirmPassword(pt.getConfirmPassword());
+		p.getUser().setContactNo(pt.getContactNo());
+		p.getUser().setDob(pt.getDob());
+		p.getUser().setRole(pt.getRole());
+		p.setBloodGroup(pt.getBloodGroup());
+		p.setDateOfAdmission(pt.getDateOfAdmission());
+		p.setDisease(pt.getDisease());
+		p.setPaymentStatus(pt.getPaymentStatus());
+		
+		
+		return "patient with ID: "+p.getPatientId()+" details updated successfully";
 	}
 
 	
